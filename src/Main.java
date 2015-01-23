@@ -74,6 +74,10 @@ public class Main {
             String ext = "(none)";
             if (parts.length > 1) {
                 ext = parts[parts.length - 1];
+
+                if (ext.length() > 4) {
+                    ext = "(none)";
+                }
             }
 
             if (!extensions.containsKey(ext)) {
