@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.*;
 
@@ -15,7 +16,7 @@ public class Main {
     }
 
     private static String makeJson(List<DropboxFile> all) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Map<String, Object> outer = new LinkedHashMap<String, Object>();
         outer.put("total-file-count", (long) all.size());
         outer.put("file-extensions", extensions(all));
@@ -44,5 +45,6 @@ public class Main {
 
         return extensions;
     }
+
 
 }
