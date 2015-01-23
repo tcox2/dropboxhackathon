@@ -1,5 +1,7 @@
 
-import com.sun.tools.javac.util.Pair;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +15,7 @@ public class DupeFinder {
         Map<Pair<String,Long>, DuplicatedFile> foo = new HashMap<Pair<String, Long>, DuplicatedFile>();
 
         for (DropboxFile f : all) {
-            Pair<String, Long> key = new Pair<String, Long>(f.hash(), f.size());
+            Pair<String, Long> key = new ImmutablePair<String, Long>(f.hash(), f.size());
 
             if (!foo.containsKey(key)) {
                 DuplicatedFile value = new DuplicatedFile();
