@@ -16,7 +16,7 @@ public class Main {
         }
 
         // create some dupes
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 1; i++) {
             all.add(((TempFile) all.get(22)).fakeDupe());
             all.add(((TempFile) all.get(23)).fakeDupe());
             all.add(((TempFile) all.get(23)).fakeDupe());

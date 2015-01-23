@@ -19,13 +19,14 @@ public class DupeFinder {
 
             if (!foo.containsKey(key)) {
                 DuplicatedFile value = new DuplicatedFile();
-                value.filename = f.filename();
-                value.path = f.path();
                 value.fileSize = f.size();
                 foo.put(key, value);
 
             }
-            foo.get(key).incDupes();
+            InstanceOfDuplicatedFile i = new InstanceOfDuplicatedFile();
+            i.filename = f.filename();
+            i.path = f.path();
+            foo.get(key).incDupes(i);
         }
 
         removeDupes(foo);
@@ -54,8 +55,7 @@ public class DupeFinder {
 }
  class DuplicatedFile {
     private long numberOfCopies = 0;
-    String filename;
-    String path;
+    List<InstanceOfDuplicatedFile> instances = new ArrayList<InstanceOfDuplicatedFile>();
     long fileSize;
      long totalWastedSpace = 0;
 
@@ -63,8 +63,14 @@ public class DupeFinder {
          return numberOfCopies;
      }
 
-     public void incDupes() {
+     public void incDupes(InstanceOfDuplicatedFile i) {
          numberOfCopies++;
          totalWastedSpace = (numberOfCopies -1) * fileSize;
+         instances.add(i);
      }
  }
+
+class InstanceOfDuplicatedFile {
+    String filename;
+    String path;
+}
