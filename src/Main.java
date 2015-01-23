@@ -1,9 +1,6 @@
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
 
@@ -19,9 +16,33 @@ public class Main {
 
     private static String makeJson(List<DropboxFile> all) {
         Gson gson = new Gson();
-        Map<String, Long> outer = new LinkedHashMap<String, Long>();
+        Map<String, Object> outer = new LinkedHashMap<String, Object>();
         outer.put("total-file-count", (long) all.size());
+        outer.put("file-extensions", extensions(all));
+        // last 24 hours
+        // last week
         return gson.toJson(outer);
+    }
+
+    private static Map<String, Long> extensions(List<DropboxFile> all) {
+        Map<String, Long> extensions = new HashMap<String, Long>();
+        for (DropboxFile f : all) {
+            String fn = f.filename();
+            String[] parts = fn.split("\\.");
+            String ext = "(none)";
+            if (parts.length > 1) {
+                ext = parts[parts.length - 1];
+            }
+
+            if (!extensions.containsKey(ext)) {
+                extensions.put(ext, 0L);
+            }
+            long count = extensions.get(ext);
+            count++;
+            extensions.put(ext, count);
+        }
+
+        return extensions;
     }
 
 }

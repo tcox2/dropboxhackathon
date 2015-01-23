@@ -12,11 +12,13 @@ public class TempFile implements DropboxFile {
     private final long lastModified;
     private final String filename;
     private final String path;
+    private final long size;
 
     TempFile() {
         this.lastModified = Math.abs(random.nextLong() % new Date().getTime());
         this.filename = "filename_" + Math.random() + "_" + Math.random() + anExtension();
         this.path = aPath();
+        this.size = Math.abs(random.nextInt() % 10000000);
     }
 
     private String anExtension() {
@@ -51,11 +53,17 @@ public class TempFile implements DropboxFile {
     }
 
     @Override
+    public long size() {
+        return size;
+    }
+
+    @Override
     public String toString() {
         return "TempFile{" +
                 "lastModified=" + lastModified +
                 ", filename='" + filename + '\'' +
                 ", path='" + path + '\'' +
+                ", size=" + size +
                 '}';
     }
 }
