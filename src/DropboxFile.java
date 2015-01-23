@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.dropbox.core.DbxEntry;
 
 public class DropboxFile implements IDropboxFile {
@@ -25,16 +29,19 @@ public class DropboxFile implements IDropboxFile {
 	@Override
 	public String path() {
 		String filePath = "";
-		String[] filePathSegments = dropboxFile.path.split("/");
+		List<String> filePathSegments = new ArrayList<>();
+		filePathSegments.addAll(Arrays.asList(dropboxFile.path.split("/")));
+		filePathSegments.remove(0);
+		filePathSegments.remove(filePathSegments.size() - 1);
 		
-		if (filePathSegments.length < 2) {
+		if (filePathSegments.isEmpty()) {
 			return "/";
 		}
 		
-		for (int i = 0; i < filePathSegments.length - 2; i++)
+		for (String pathSegment : filePathSegments)
 		{
 			filePath += "/";
-			filePath += filePathSegments[i];
+			filePath += pathSegment;
 		}
 		
 		return filePath;

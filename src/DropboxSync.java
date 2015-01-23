@@ -48,7 +48,7 @@ public class DropboxSync {
         
         final Date start = new Date();
         
-        List<DbxEntry.File> allFilesInDropbox = traverseHierarchy(client, "/");
+        List<IDropboxFile> allFilesInDropbox = traverseHierarchy(client, "/");
         
         final Date end = new Date();
         
@@ -56,8 +56,8 @@ public class DropboxSync {
         System.out.println(allFilesInDropbox.size());
     }
     
-    private static List<DbxEntry.File> traverseHierarchy(DbxClient client, String parentPath) throws DbxException {
-    	List<DbxEntry.File> files = new ArrayList<>();
+    private static List<IDropboxFile> traverseHierarchy(DbxClient client, String parentPath) throws DbxException {
+    	List<IDropboxFile> files = new ArrayList<>();
     	
         DbxEntry.WithChildren listing = client.getMetadataWithChildren(parentPath);
         
@@ -66,8 +66,15 @@ public class DropboxSync {
             
             if (child.isFile()) {
             	System.out.println("	" + child.name + ": " + child.toString());
-            	files.add(child.asFile());
+            	DropboxFile file = new DropboxFile(child.asFile(), "");
+
+            	System.out.println("filename: " + file.filename());
+            	System.out.println("hash: " + file.hash());
+            	System.out.println("last modified: " + file.lastModified());
+            	System.out.println("path: " + file.path());
+            	System.out.println("size: " + file.size());
             	
+            	files.add(file);
             }
             else if (child.isFolder()) {
             	files.addAll(traverseHierarchy(client, child.asFolder().path));
