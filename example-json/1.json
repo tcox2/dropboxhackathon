@@ -1,20 +1,47 @@
 {
   "total-file-count": 100,
   "file-extensions": {
-    "bmp": 7,
-    "jpg": 7,
-    "png": 9,
-    "mkv": 13,
-    "mp4": 16,
-    "mp3": 14,
-    "avi": 19,
-    "txt": 5,
-    "gif": 10
+    "bmp": 10,
+    "jpg": 17,
+    "png": 12,
+    "mkv": 12,
+    "mp4": 15,
+    "mp3": 13,
+    "avi": 4,
+    "gif": 9,
+    "txt": 8
   },
   "media-types": {
-    "picture": 33,
-    "movie": 48,
-    "audio": 14,
-    "text": 5
-  }
+    "picture": 48,
+    "movie": 31,
+    "audio": 13,
+    "text": 8
+  },
+  "biggest-files": [
+    {
+      "name": "filename_0.7960517824810333_0.1990620363671507.mp3",
+      "path": "/monkey",
+      "size": 9950115
+    },
+    {
+      "name": "filename_0.20643582949528405_0.8191152256931146.avi",
+      "path": "/monkey",
+      "size": 9796928
+    },
+    {
+      "name": "filename_0.9428767754752355_0.9929017964076682.mkv",
+      "path": "/foo/bar",
+      "size": 9385996
+    },
+    {
+      "name": "filename_0.15961772999610346_0.9142558391374587.mp3",
+      "path": "/foo",
+      "size": 9298988
+    },
+    {
+      "name": "filename_0.3693519484252984_0.8692048264665807.bmp",
+      "path": "/monkey",
+      "size": 9285414
+    }
+  ]
 }
