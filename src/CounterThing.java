@@ -14,7 +14,7 @@ public class CounterThing {
         counters.put(key, x);
     }
 
-    Object get() {
+    Map<String, Long> get() {
         return counters;
     }
 

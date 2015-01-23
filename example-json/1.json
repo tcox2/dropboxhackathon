@@ -1,92 +1,99 @@
 {
-  "total-file-count": 104,
+  "total-file-count": 704,
   "file-extensions": {
-    "mkv": 13,
-    "mp4": 16,
-    "mp3": 13,
-    "txt": 11,
-    "jpg": 7,
-    "bmp": 8,
-    "9259303132815893": 1,
-    "png": 11,
-    "6940762266104872": 1,
-    "avi": 14,
-    "786284976746519": 1,
-    "gif": 7,
-    "053044691643616915": 1
+    "8331443618531023": 1,
+    "8361534491758533": 1,
+    "mkv": 69,
+    "mp4": 78,
+    "mp3": 94,
+    "38639410858111023": 1,
+    "txt": 69,
+    "bmp": 86,
+    "jpg": 78,
+    "png": 68,
+    "18915265027285832": 1,
+    "avi": 78,
+    "gif": 80
   },
-  "media-types": {
-    "movie": 43,
+  "media-types-count": {
+    "(unknown)": 4,
+    "movie": 225,
+    "audio": 94,
+    "text": 69,
+    "picture": 312
+  },
+  "media-types-percentages": {
+    "(unknown)": 1,
+    "movie": 32,
     "audio": 13,
-    "text": 11,
-    "picture": 33,
-    "(unknown)": 4
+    "text": 10,
+    "picture": 45
   },
   "biggest-files": [
     {
-      "name": "filename_0.08816370432177933_0.2545091850486859.mp4",
-      "path": "/monkey",
-      "size": 9889603
-    },
-    {
-      "name": "filename_0.6533322800169705_0.03659849739442611.mkv",
-      "path": "/monkey",
-      "size": 9683212
-    },
-    {
-      "name": "filename_0.9187971428653965_0.1458337335108978.mp3",
+      "name": "filename_0.06754634767126355_0.6777460569517105.gif",
       "path": "/foo/bar",
-      "size": 9630946
+      "size": 9984132
     },
     {
-      "name": "filename_0.05865510532771434_0.953080645246629.png",
+      "name": "filename_0.3767907165263822_0.048900260103049376.gif",
       "path": "/foo",
-      "size": 9593285
+      "size": 9964804
     },
     {
-      "name": "filename_0.9171237341886653_0.7120940032998476.bmp",
-      "path": "/foo",
-      "size": 9415432
+      "name": "filename_0.748708541721278_0.9243108826475345.mp3",
+      "path": "/monkey",
+      "size": 9956254
+    },
+    {
+      "name": "filename_0.741113622744821_0.7593179747045264.png",
+      "path": "/foo/bar",
+      "size": 9936804
+    },
+    {
+      "name": "filename_0.049247465826277925_0.23901360740943445.gif",
+      "path": "/monkey",
+      "size": 9927684
     }
   ],
   "duplicate-files": {
-    "(hashhashhash,167301)": {
-      "numberOfCopies": 4,
-      "instances": [
-        {
-          "filename": "filename_0.5068416882056896_0.9520353903343294.avi",
-          "path": "/monkey"
-        },
-        {
-          "filename": "filename_0.5068416882056896_0.9520353903343294.avi_dupe0.6940762266104872",
-          "path": "/monkey_dupe0.8681702476618113"
-        },
-        {
-          "filename": "filename_0.5068416882056896_0.9520353903343294.avi_dupe0.9259303132815893",
-          "path": "/monkey_dupe0.38890617737060906"
-        },
-        {
-          "filename": "filename_0.5068416882056896_0.9520353903343294.avi_dupe0.786284976746519",
-          "path": "/monkey_dupe0.4277496820039499"
-        }
-      ],
-      "fileSize": 167301,
-      "totalWastedSpace": 501903
-    },
-    "(hashhashhash,321898)": {
+    "(hashhashhash,4149665)": {
       "numberOfCopies": 2,
       "instances": [
         {
-          "filename": "filename_0.09671531439589642_0.9731546634526342.mp4",
+          "filename": "filename_0.6826416872395777_0.973660302604492.mp3",
           "path": "/monkey"
         },
         {
-          "filename": "filename_0.09671531439589642_0.9731546634526342.mp4_dupe0.053044691643616915",
-          "path": "/monkey_dupe0.9934010918587028"
+          "filename": "filename_0.6826416872395777_0.973660302604492.mp3_dupe0.38639410858111023",
+          "path": "/monkey_dupe0.10170794743171174"
         }
       ],
-      "fileSize": 321898,
-      "totalWastedSpace": 321898
+      "fileSize": 4149665,
+      "totalWastedSpace": 4149665
+    },
+    "(hashhashhash,526804)": {
+      "numberOfCopies": 4,
+      "instances": [
+        {
+          "filename": "filename_0.28459715106364647_0.4099605438832308.mp3",
+          "path": "/foo/bar"
+        },
+        {
+          "filename": "filename_0.28459715106364647_0.4099605438832308.mp3_dupe0.8331443618531023",
+          "path": "/foo/bar_dupe0.03520654103578813"
+        },
+        {
+          "filename": "filename_0.28459715106364647_0.4099605438832308.mp3_dupe0.8361534491758533",
+          "path": "/foo/bar_dupe0.8656115777469565"
+        },
+        {
+          "filename": "filename_0.28459715106364647_0.4099605438832308.mp3_dupe0.18915265027285832",
+          "path": "/foo/bar_dupe0.4855708515482223"
+        }
+      ],
+      "fileSize": 526804,
+      "totalWastedSpace": 1580412
     }
   }
 }

@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         List<IDropboxFile> all = new ArrayList<IDropboxFile>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 700; i++) {
             all.add(new TempFile());
         }
 
@@ -31,17 +31,39 @@ public class Main {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Map<String, Object> outer = new LinkedHashMap<String, Object>();
 
-        //outer.put("total-file-count", (long) all.size());
-        //outer.put("file-extensions", extensions(all));
-        //outer.put("media-types", mediaTypes(extensions(all)));
-        //outer.put("biggest-files", biggestFiles(all));
-        //outer.put("duplicate-files", DupeFinder.find(all));
+        outer.put("total-file-count", (long) all.size());
+        outer.put("file-extensions", extensions(all));
+        outer.put("media-types-count", mediaTypes(extensions(all)));
+        outer.put("media-types-percentages", percentagify(mediaTypes(extensions(all))));
+        outer.put("biggest-files", biggestFiles(all));
+        outer.put("duplicate-files", DupeFinder.find(all));
 
-        outer.put("old-big-files", OldBigFiles.find(all));
+        //outer.put("old-big-files", OldBigFiles.find(all));
 
         // last 24 hours
         // last week
         return gson.toJson(outer);
+    }
+
+    private static Object percentagify(Map<String, Long> counts) {
+        long total = 0;
+
+        for (Long l : counts.values()) {
+            total += l;
+        }
+
+        double onePercent = total / 100;
+
+        Map<String, Long> percentages = new LinkedHashMap<String, Long>();
+
+        for (Map.Entry<String, Long> e : counts.entrySet()) {
+            percentages.put(e.getKey(), roundOff((double) (e.getValue()) / onePercent));
+        }
+        return percentages;
+    }
+
+    private static long roundOff(double v) {
+        return Math.round(v);
     }
 
     private static Map<String, Long> extensions(List<IDropboxFile> all) {
@@ -67,7 +89,7 @@ public class Main {
 
 
 
-    private static Object mediaTypes(Map<String, Long> extensions) {
+    private static Map<String, Long> mediaTypes(Map<String, Long> extensions) {
         CounterThing c = new CounterThing();
         for (Map.Entry<String, Long> e : extensions.entrySet()) {
             c.inc(extToMediaType(e.getKey()), e.getValue());
