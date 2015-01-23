@@ -58,6 +58,11 @@ public class TempFile implements DropboxFile {
     }
 
     @Override
+    public String hash() {
+        return "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+    }
+
+    @Override
     public String toString() {
         return "TempFile{" +
                 "lastModified=" + lastModified +

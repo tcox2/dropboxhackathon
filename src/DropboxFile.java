@@ -8,4 +8,6 @@ public interface DropboxFile {
     String path();
 
     long size();
+
+    String hash();
 }
