@@ -21,6 +21,7 @@ public class Main {
         outer.put("total-file-count", (long) all.size());
         outer.put("file-extensions", extensions(all));
         outer.put("media-types", mediaTypes(extensions(all)));
+        outer.put("biggest-files", biggestFiles(all));
         // last 24 hours
         // last week
         return gson.toJson(outer);
@@ -76,5 +77,28 @@ public class Main {
         return "(unknown)";
     }
 
+    static class BigFile {
+        String name;
+        String path;
+        long size;
+    }
 
+    private static Object biggestFiles(List<DropboxFile> all) {
+        Collections.sort(all, new Comparator<DropboxFile>() {
+            @Override
+            public int compare(DropboxFile o1, DropboxFile o2) {
+                return -new Long(o1.size()).compareTo(o2.size());
+            }
+        });
+        List<DropboxFile> biggest = all.subList(0, 5);
+        List<BigFile> out = new ArrayList<BigFile>();
+        for (DropboxFile f : biggest) {
+            BigFile bf = new BigFile();
+            bf.path = f.path();
+            bf.name = f.filename();
+            bf.size = f.size();
+            out.add(bf);
+        }
+        return out;
+    }
 }
