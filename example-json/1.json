@@ -1,14 +1,20 @@
 {
   "total-file-count": 100,
   "file-extensions": {
-    "jpg": 10,
-    "bmp": 9,
-    "png": 15,
-    "mkv": 10,
-    "mp4": 7,
-    "mp3": 11,
-    "avi": 10,
-    "gif": 14,
-    "txt": 14
+    "bmp": 7,
+    "jpg": 7,
+    "png": 9,
+    "mkv": 13,
+    "mp4": 16,
+    "mp3": 14,
+    "avi": 19,
+    "txt": 5,
+    "gif": 10
+  },
+  "media-types": {
+    "picture": 33,
+    "movie": 48,
+    "audio": 14,
+    "text": 5
   }
 }

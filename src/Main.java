@@ -20,6 +20,7 @@ public class Main {
         Map<String, Object> outer = new LinkedHashMap<String, Object>();
         outer.put("total-file-count", (long) all.size());
         outer.put("file-extensions", extensions(all));
+        outer.put("media-types", mediaTypes(extensions(all)));
         // last 24 hours
         // last week
         return gson.toJson(outer);
@@ -44,6 +45,35 @@ public class Main {
         }
 
         return extensions;
+    }
+
+
+
+    private static Object mediaTypes(Map<String, Long> extensions) {
+        CounterThing c = new CounterThing();
+        for (Map.Entry<String, Long> e : extensions.entrySet()) {
+            c.inc(extToMediaType(e.getKey()), e.getValue());
+        }
+        return c.get();
+    }
+
+    private static String extToMediaType(String ext) {
+        String picture = "picture";
+        String movie = "movie";
+        String text = "text";
+        String audio = "audio";
+
+        if ("png".equals(ext)) return picture;
+        if ("txt".equals(ext)) return text;
+        if ("mkv".equals(ext)) return movie;
+        if ("jpg".equals(ext)) return picture;
+        if ("mp4".equals(ext)) return movie;
+        if ("mp3".equals(ext)) return audio;
+        if ("avi".equals(ext)) return movie;
+        if ("gif".equals(ext)) return picture;
+        if ("bmp".equals(ext)) return picture;
+
+        return "(unknown)";
     }
 
 
