@@ -2,7 +2,7 @@ import java.util.Date;
 import java.util.Random;
 
 
-public class TempFile implements DropboxFile {
+public class TempFile implements IDropboxFile {
 
     static Random random = new Random();
 
@@ -70,7 +70,7 @@ public class TempFile implements DropboxFile {
                 '}';
     }
 
-    public DropboxFile fakeDupe() {
+    public IDropboxFile fakeDupe() {
         TempFile x = new TempFile();
         x.filename = filename + "_dupe" + Math.random();
         x.path = path + "_dupe" + Math.random();

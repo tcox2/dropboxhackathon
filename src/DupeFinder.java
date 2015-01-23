@@ -10,11 +10,11 @@ import java.util.Map;
 
 public class DupeFinder {
 
-    public static Object find(List<DropboxFile> all) {
+    public static Object find(List<IDropboxFile> all) {
         // pair is <hash, size>
         Map<Pair<String,Long>, DuplicatedFile> foo = new HashMap<Pair<String, Long>, DuplicatedFile>();
 
-        for (DropboxFile f : all) {
+        for (IDropboxFile f : all) {
             Pair<String, Long> key = new ImmutablePair<String, Long>(f.hash(), f.size());
 
             if (!foo.containsKey(key)) {

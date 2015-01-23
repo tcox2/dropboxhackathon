@@ -1,14 +1,53 @@
+import com.dropbox.core.DbxEntry;
 
-public interface DropboxFile {
+public class DropboxFile implements IDropboxFile {
+	
+	final DbxEntry.File dropboxFile;
+	final String hash;
+	
+	public DropboxFile(DbxEntry.File dropboxFile, String hash) {
+		this.dropboxFile = dropboxFile;
+		this.hash = hash;
+	}
 
-    long lastModified();
+	@Override
+	public long lastModified() {
+		return dropboxFile.lastModified.getTime();
+	}
 
-    String filename();
+	@Override
+	public String filename() {
+		String[] filePathSegments = dropboxFile.path.split("/");
+		
+		return filePathSegments[filePathSegments.length - 1];
+	}
 
-    String path();
+	@Override
+	public String path() {
+		String filePath = "";
+		String[] filePathSegments = dropboxFile.path.split("/");
+		
+		if (filePathSegments.length < 2) {
+			return "/";
+		}
+		
+		for (int i = 0; i < filePathSegments.length - 2; i++)
+		{
+			filePath += "/";
+			filePath += filePathSegments[i];
+		}
+		
+		return filePath;
+	}
 
-    long size();
+	@Override
+	public long size() {
+		return dropboxFile.numBytes;
+	}
 
-    String hash();
+	@Override
+	public String hash() {
+		return hash;
+	}
 
 }

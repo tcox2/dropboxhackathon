@@ -10,7 +10,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        List<DropboxFile> all = new ArrayList<DropboxFile>();
+        List<IDropboxFile> all = new ArrayList<IDropboxFile>();
         for (int i = 0; i < 100; i++) {
             all.add(new TempFile());
         }
@@ -27,7 +27,7 @@ public class Main {
         System.out.println(json);
     }
 
-    private static String makeJson(List<DropboxFile> all) {
+    private static String makeJson(List<IDropboxFile> all) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Map<String, Object> outer = new LinkedHashMap<String, Object>();
         outer.put("total-file-count", (long) all.size());
@@ -41,9 +41,9 @@ public class Main {
         return gson.toJson(outer);
     }
 
-    private static Map<String, Long> extensions(List<DropboxFile> all) {
+    private static Map<String, Long> extensions(List<IDropboxFile> all) {
         Map<String, Long> extensions = new HashMap<String, Long>();
-        for (DropboxFile f : all) {
+        for (IDropboxFile f : all) {
             String fn = f.filename();
             String[] parts = fn.split("\\.");
             String ext = "(none)";
@@ -97,16 +97,16 @@ public class Main {
         long size;
     }
 
-    private static Object biggestFiles(List<DropboxFile> all) {
-        Collections.sort(all, new Comparator<DropboxFile>() {
+    private static Object biggestFiles(List<IDropboxFile> all) {
+        Collections.sort(all, new Comparator<IDropboxFile>() {
             @Override
-            public int compare(DropboxFile o1, DropboxFile o2) {
+            public int compare(IDropboxFile o1, IDropboxFile o2) {
                 return -new Long(o1.size()).compareTo(o2.size());
             }
         });
-        List<DropboxFile> biggest = all.subList(0, 5);
+        List<IDropboxFile> biggest = all.subList(0, 5);
         List<BigFile> out = new ArrayList<BigFile>();
-        for (DropboxFile f : biggest) {
+        for (IDropboxFile f : biggest) {
             BigFile bf = new BigFile();
             bf.path = f.path();
             bf.name = f.filename();
