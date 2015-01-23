@@ -1,47 +1,42 @@
 {
-  "total-file-count": 100,
-  "file-extensions": {
-    "bmp": 10,
-    "jpg": 17,
-    "png": 12,
-    "mkv": 12,
-    "mp4": 15,
-    "mp3": 13,
-    "avi": 4,
-    "gif": 9,
-    "txt": 8
-  },
-  "media-types": {
-    "picture": 48,
-    "movie": 31,
-    "audio": 13,
-    "text": 8
-  },
-  "biggest-files": [
-    {
-      "name": "filename_0.7960517824810333_0.1990620363671507.mp3",
-      "path": "/monkey",
-      "size": 9950115
+  "duplicate-files": {
+    "(hashhashhash,4170574)": {
+      "numberOfCopies": 2,
+      "instances": [
+        {
+          "filename": "filename_0.12911436688932032_0.5095719896980841.gif",
+          "path": "/foo"
+        },
+        {
+          "filename": "filename_0.12911436688932032_0.5095719896980841.gif_dupe0.5650987500873234",
+          "path": "/foo_dupe0.9535305231695326"
+        }
+      ],
+      "fileSize": 4170574,
+      "totalWastedSpace": 4170574
     },
-    {
-      "name": "filename_0.20643582949528405_0.8191152256931146.avi",
-      "path": "/monkey",
-      "size": 9796928
-    },
-    {
-      "name": "filename_0.9428767754752355_0.9929017964076682.mkv",
-      "path": "/foo/bar",
-      "size": 9385996
-    },
-    {
-      "name": "filename_0.15961772999610346_0.9142558391374587.mp3",
-      "path": "/foo",
-      "size": 9298988
-    },
-    {
-      "name": "filename_0.3693519484252984_0.8692048264665807.bmp",
-      "path": "/monkey",
-      "size": 9285414
+    "(hashhashhash,1111549)": {
+      "numberOfCopies": 4,
+      "instances": [
+        {
+          "filename": "filename_0.590674595602229_0.6096526435688288.txt",
+          "path": "/monkey"
+        },
+        {
+          "filename": "filename_0.590674595602229_0.6096526435688288.txt_dupe0.10237254089863768",
+          "path": "/monkey_dupe0.5349177394715079"
+        },
+        {
+          "filename": "filename_0.590674595602229_0.6096526435688288.txt_dupe0.37133704904920617",
+          "path": "/monkey_dupe0.7376013240583377"
+        },
+        {
+          "filename": "filename_0.590674595602229_0.6096526435688288.txt_dupe0.4684752373985974",
+          "path": "/monkey_dupe0.853785282379557"
+        }
+      ],
+      "fileSize": 1111549,
+      "totalWastedSpace": 3334647
     }
-  ]
+  }
 }
