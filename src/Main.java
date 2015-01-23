@@ -38,7 +38,7 @@ public class Main {
         outer.put("biggest-files", biggestFiles(all));
         outer.put("duplicate-files", DupeFinder.find(all));
 
-        //outer.put("old-big-files", OldBigFiles.find(all));
+        outer.put("old-big-files", OldBigFiles.find(all));
 
         // last 24 hours
         // last week
