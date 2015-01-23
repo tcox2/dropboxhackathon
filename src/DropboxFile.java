@@ -10,4 +10,5 @@ public interface DropboxFile {
     long size();
 
     String hash();
+
 }

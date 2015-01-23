@@ -1,18 +1,16 @@
-
 import java.util.Date;
 import java.util.Random;
-
-// team 25
 
 
 public class TempFile implements DropboxFile {
 
     static Random random = new Random();
 
-    private final long lastModified;
-    private final String filename;
-    private final String path;
-    private final long size;
+    private long lastModified;
+    private String filename;
+    private String path;
+    private long size;
+    private String hash = "hashhashhash";
 
     TempFile() {
         this.lastModified = Math.abs(random.nextLong() % new Date().getTime());
@@ -59,7 +57,7 @@ public class TempFile implements DropboxFile {
 
     @Override
     public String hash() {
-        return "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        return hash;
     }
 
     @Override
@@ -70,5 +68,15 @@ public class TempFile implements DropboxFile {
                 ", path='" + path + '\'' +
                 ", size=" + size +
                 '}';
+    }
+
+    public DropboxFile fakeDupe() {
+        TempFile x = new TempFile();
+        x.filename = filename + "_dupe" + Math.random();
+        x.path = path + "_dupe" + Math.random();
+        x.size = size;
+        x.hash = hash;
+        x.lastModified = lastModified;
+        return x;
     }
 }

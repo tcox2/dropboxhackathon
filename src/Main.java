@@ -3,12 +3,24 @@ import com.google.gson.GsonBuilder;
 
 import java.util.*;
 
+//
+// we are team 25
+//
+
 public class Main {
 
     public static void main(String[] args) {
         List<DropboxFile> all = new ArrayList<DropboxFile>();
         for (int i = 0; i < 100; i++) {
             all.add(new TempFile());
+        }
+
+        // create some dupes
+        for (int i = 0; i < 50; i++) {
+            all.add(((TempFile) all.get(22)).fakeDupe());
+            all.add(((TempFile) all.get(23)).fakeDupe());
+            all.add(((TempFile) all.get(23)).fakeDupe());
+            all.add(((TempFile) all.get(23)).fakeDupe());
         }
 
         String json = makeJson(all);
@@ -18,10 +30,12 @@ public class Main {
     private static String makeJson(List<DropboxFile> all) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Map<String, Object> outer = new LinkedHashMap<String, Object>();
-        outer.put("total-file-count", (long) all.size());
-        outer.put("file-extensions", extensions(all));
-        outer.put("media-types", mediaTypes(extensions(all)));
-        outer.put("biggest-files", biggestFiles(all));
+        //outer.put("total-file-count", (long) all.size());
+        //outer.put("file-extensions", extensions(all));
+        //outer.put("media-types", mediaTypes(extensions(all)));
+        //outer.put("biggest-files", biggestFiles(all));
+
+        outer.put("duplicate-files", DupeFinder.find(all));
         // last 24 hours
         // last week
         return gson.toJson(outer);
