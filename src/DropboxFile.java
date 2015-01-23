@@ -7,11 +7,10 @@ import com.dropbox.core.DbxEntry;
 public class DropboxFile implements IDropboxFile {
 	
 	final DbxEntry.File dropboxFile;
-	final String hash;
+	private String hash;
 	
-	public DropboxFile(DbxEntry.File dropboxFile, String hash) {
+	public DropboxFile(DbxEntry.File dropboxFile) {
 		this.dropboxFile = dropboxFile;
-		this.hash = hash;
 	}
 
 	@Override
@@ -55,6 +54,10 @@ public class DropboxFile implements IDropboxFile {
 	@Override
 	public String hash() {
 		return hash;
+	}
+
+	public void setHash(String hash) {
+		this.hash = hash;
 	}
 
 }
