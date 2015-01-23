@@ -57,7 +57,7 @@ public class DropboxSync {
     }
     
     private static List<IDropboxFile> traverseHierarchy(DbxClient client, String parentPath) throws DbxException {
-    	List<IDropboxFile> files = new ArrayList<>();
+    	List<IDropboxFile> files = new ArrayList<IDropboxFile>();
     	
         DbxEntry.WithChildren listing = client.getMetadataWithChildren(parentPath);
         

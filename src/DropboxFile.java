@@ -29,7 +29,7 @@ public class DropboxFile implements IDropboxFile {
 	@Override
 	public String path() {
 		String filePath = "";
-		List<String> filePathSegments = new ArrayList<>();
+		List<String> filePathSegments = new ArrayList<String>();
 		filePathSegments.addAll(Arrays.asList(dropboxFile.path.split("/")));
 		filePathSegments.remove(0);
 		filePathSegments.remove(filePathSegments.size() - 1);

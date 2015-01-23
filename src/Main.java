@@ -30,12 +30,15 @@ public class Main {
     private static String makeJson(List<IDropboxFile> all) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Map<String, Object> outer = new LinkedHashMap<String, Object>();
-        outer.put("total-file-count", (long) all.size());
-        outer.put("file-extensions", extensions(all));
-        outer.put("media-types", mediaTypes(extensions(all)));
-        outer.put("biggest-files", biggestFiles(all));
 
-        outer.put("duplicate-files", DupeFinder.find(all));
+        //outer.put("total-file-count", (long) all.size());
+        //outer.put("file-extensions", extensions(all));
+        //outer.put("media-types", mediaTypes(extensions(all)));
+        //outer.put("biggest-files", biggestFiles(all));
+        //outer.put("duplicate-files", DupeFinder.find(all));
+
+        outer.put("old-big-files", OldBigFiles.find(all));
+
         // last 24 hours
         // last week
         return gson.toJson(outer);
