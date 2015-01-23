@@ -1,4 +1,3 @@
-package dropboxhackathon;
 
 public class Main {
 
