@@ -154,17 +154,19 @@ public class OldMain {
 
     private static Map<String, Long> mediaTypes(Map<String, Long> extensions) {
         CounterThing c = new CounterThing();
+        c.ensurePresent(picture, movie, text, audio, "(unknown)");
         for (Map.Entry<String, Long> e : extensions.entrySet()) {
             c.inc(extToMediaType(e.getKey()), e.getValue());
         }
         return c.get();
     }
 
+    static String picture = "picture";
+    static String movie = "movie";
+    static String text = "text";
+    static String audio = "audio";
+
     private static String extToMediaType(String ext) {
-        String picture = "picture";
-        String movie = "movie";
-        String text = "text";
-        String audio = "audio";
 
         if ("png".equals(ext)) return picture;
         if ("txt".equals(ext)) return text;

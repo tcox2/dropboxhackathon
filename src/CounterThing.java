@@ -18,4 +18,10 @@ public class CounterThing {
         return counters;
     }
 
+    void ensurePresent(String... keys) {
+        for (String key : keys) {
+            counters.put(key, 0L);
+        }
+    }
+
 }

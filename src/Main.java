@@ -54,7 +54,10 @@ public class Main {
             System.out.println("There are no registered tokens.  Nothing to do.");
         }
         for (String token : tokens) {
-            System.out.println("COLLECTION on token " + token);
+            if (token.startsWith("latest ")) {
+                token = token.replace("latest ", "");
+            }
+            System.out.println("COLLECTION on token [" + token + "]");
 
             List<IDropboxFile> allFiles = dropbox.getFileList(token);
 
@@ -113,7 +116,7 @@ public class Main {
                 } else if ("get_latest_json".equals(u.command)) {
                     System.out.println("getting latest report for token " + u.accessToken);
                     String latestJson = dropbox.getLatestReport(u.accessToken);
-                  //  System.out.println("latest json: " + latestJson);
+                    System.out.println("latest json: " + latestJson);
                     response = latestJson;
                     code = 200;
                     System.out.printf("Front end requested latest report");
@@ -127,18 +130,16 @@ public class Main {
                 response = "failed";
                 code = 500;
             }
+            List<String> fff = new ArrayList<String>();
+            fff.add("application/json");
+            t.getResponseHeaders().put("Content-Type",fff);
             t.sendResponseHeaders(code, response.length());
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
             os.close();
+            System.out.println("http request closed");
         }
 
-        private static void writeTokens(List<String> tokens) throws IOException {
-            tokens = stripQuotes(tokens);
-            tokens = new ArrayList(new HashSet(tokens)); // dedupe
-            FileUtils.writeLines(new File("tokens"), tokens);
-            System.out.println("Updated tokens file with " + tokens.size() + " tokens");
-        }
 
         private static List<String> stripQuotes(List<String> tokens) {
             List<String> out = new ArrayList<String>();
@@ -173,28 +174,19 @@ public class Main {
         IOUtils.copy(is, writer, "UTF-8");
         String theString = writer.toString();
         System.out.println("received: " + theString);
-        theString = theString.replaceAll("'", "\"");
-        theString = theString.substring(1);
-        theString = theString.substring(0, theString.length() - 1);
-        System.out.println("changed: " + theString);
 
-        JsonReader reader = new JsonReader(new StringReader(theString));
-        reader.setLenient(true);
-        JsonElement parse = Streams.parse(reader);
-        for (Map.Entry<String, JsonElement> e : parse.getAsJsonObject().entrySet()) {
-            String value = e.getValue().getAsString();
+        String token = theString.trim();
+        token = token.replace("latest ", "");
+        System.out.println("token: " + token);
 
-            System.out.println(e.getKey() + "     " + value);
-            if ("accessToken".equals(e.getKey())) {
-                u.accessToken = value;
-            }
-            if ("command".equals(e.getKey())) {
-                u.command = value;
-            }
-        }
-        if (u.accessToken == null || u.accessToken.length() == 0) {
-            throw new RuntimeException("Cannot find access token in request");
-        }
+        List<String> t = readTokens();
+        t.add(token.trim());
+        writeTokens(t);
+
+        u.command = "get_latest_json";
+
+        u.accessToken = token;
+        System.out.println("uat=[" + u.accessToken + "]");
         return u;
     }
 
@@ -204,6 +196,12 @@ public class Main {
             Thread.sleep(1000);
         }
         System.out.println("COLLECTION Running                               ");
+    }
+
+    private static void writeTokens(List<String> tokens) throws IOException {
+        tokens = new ArrayList(new HashSet(tokens)); // dedupe
+        FileUtils.writeLines(new File("tokens"), tokens);
+        System.out.println("Updated tokens file with " + tokens.size() + " tokens");
     }
 
 }

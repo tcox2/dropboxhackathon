@@ -1,2 +1,3 @@
-java -cp lib/*:out/production/dropboxhackathon:. Main
+javac -classpath "lib/*" src/* -d classes && \
+java -cp lib/*:classes:. Main
 
