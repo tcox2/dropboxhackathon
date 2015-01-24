@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="985dc522-bc0f-44bd-a355-fefd0b7b44a6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example-json/2.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DropboxService.java" afterPath="$PROJECT_DIR$/src/DropboxService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/OldMain.java" afterPath="$PROJECT_DIR$/src/OldMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dropboxhackathon.iws" />
@@ -36,8 +32,8 @@
       <file leaf-file-name="OldMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/OldMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43263757" vertical-offset="703" max-vertical-offset="3515">
-              <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.64895636" vertical-offset="703" max-vertical-offset="3515">
+              <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -521,7 +517,8 @@
     <MESSAGE value="read/write tokens&#10;" />
     <MESSAGE value="reports!" />
     <MESSAGE value="fix percentage bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix percentage bug" />
+    <MESSAGE value="again again&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="again again&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -694,8 +691,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/OldMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43263757" vertical-offset="703" max-vertical-offset="3515">
-          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.64895636" vertical-offset="703" max-vertical-offset="3515">
+          <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
           <folding />
         </state>
       </provider>
