@@ -51,14 +51,20 @@ public class TempFile implements IDropboxFile {
     }
 
     @Override
+    public String fullPath() {
+        return null;
+    }
+
+    @Override
     public long size() {
         return size;
     }
 
     @Override
-    public String hash() {
-        return hash;
+    public String rev() {
+        return null;
     }
+
 
     @Override
     public String toString() {

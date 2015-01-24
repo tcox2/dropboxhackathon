@@ -15,7 +15,7 @@ public class DupeFinder {
         Map<Pair<String,Long>, DuplicatedFile> foo = new HashMap<Pair<String, Long>, DuplicatedFile>();
 
         for (IDropboxFile f : all) {
-            Pair<String, Long> key = new ImmutablePair<String, Long>(f.hash(), f.size());
+            Pair<String, Long> key = new ImmutablePair<String, Long>("", f.size());
 
             if (!foo.containsKey(key)) {
                 DuplicatedFile value = new DuplicatedFile();

@@ -3,13 +3,11 @@ import com.google.gson.internal.Streams;
 import com.google.gson.stream.JsonReader;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import org.apache.commons.io.FileUtils;
 
-import javax.xml.ws.spi.http.HttpExchange;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.InetSocketAddress;
+import java.util.*;
 
 public class Main {
 
@@ -25,7 +23,7 @@ public class Main {
         System.out.println("HTTP service endpoint running on port " + port);
 
 
-       // while (true) {
+        // while (true) {
         //    sleep();
         //}
     }
@@ -39,7 +37,11 @@ public class Main {
             String response;
             int code;
             try {
-                read(is);
+                User u = read(is);
+                System.out.println("New access token: " + u.accessToken);
+                List<String> tokens = readTokens();
+                tokens.add(u.accessToken);
+                writeTokens(tokens);
                 response = "ok";
                 code = 200;
                 System.out.println("Request handled");
@@ -53,11 +55,40 @@ public class Main {
             os.write(response.getBytes());
             os.close();
         }
+
+        private static void writeTokens(List<String> tokens) throws IOException {
+            tokens = new ArrayList(new HashSet(tokens)); // dedupe
+            FileUtils.writeLines(new File("tokens"), tokens);
+            System.out.println("Updated tokens file with " + tokens.size() + " tokens");
+        }
+
     }
 
-    private static void read(InputStream is) {
+    private static List<String> readTokens() throws IOException {
+        try {
+            List<String> s =  FileUtils.readLines(new File("tokens"));
+            System.out.println("Read " + s.size() + " access tokens from tokens file");
+            return s;
+        } catch (FileNotFoundException e) {
+            return new ArrayList<>();
+        }
+    }
+
+
+    private static User read(InputStream is) {
+        User u = new User();
         JsonElement parse = Streams.parse(new JsonReader(new InputStreamReader(is)));
-        System.out.println(parse);
+        for (Map.Entry<String, JsonElement> e : parse.getAsJsonObject().entrySet()) {
+            System.out.println(e.getKey() + "     " + e.getValue().toString());
+
+            if ("accessToken".equals(e.getKey())) {
+                u.accessToken = e.getValue().toString();
+            }
+        }
+        if (u.accessToken == null || u.accessToken.length() == 0) {
+            throw new RuntimeException("Cannot find access token in request");
+        }
+        return u;
     }
 
     private static void sleep() throws InterruptedException {
