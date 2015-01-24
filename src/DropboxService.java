@@ -60,6 +60,13 @@ public class DropboxService implements IDropboxService {
 		return hashFile(getDbxClient(accessToken), file);
 	}
 
+	@Override
+	public IDropboxStats getQuotaStats(String accessToken) throws DbxException {
+		final DbxAccountInfo.Quota quotaInfo = getAccountInfo(getDbxClient(accessToken)).quota;
+
+		return new DropboxStats(quotaInfo);
+	}
+
 	private DbxClient getDbxClient(final String accessToken) throws DbxException {
 
 		final DbxRequestConfig config = new DbxRequestConfig(

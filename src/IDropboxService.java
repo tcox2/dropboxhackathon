@@ -13,4 +13,6 @@ public interface IDropboxService {
 
 	String getFileHash(String accessToken, IDropboxFile file) throws DbxException;
 
+	IDropboxStats getQuotaStats(String accessToken) throws DbxException;
+
 }
