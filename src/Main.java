@@ -10,6 +10,25 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
+
+        IDropboxStats fakeStats = new IDropboxStats() {
+            @Override
+            public long totalSizeInBytes() {
+                return 10 * 1024 /* kb */ * 1024 /* mb */ * 1024L;
+            }
+
+            @Override
+            public long spaceAvailableInBytes() {
+                return 2 * 1024 /* kb */ * 1024 /* mb */ * 1024L;
+            }
+
+            @Override
+            public long spaceUsedInBytes() {
+                return 8 * 1024 /* kb */ * 1024 /* mb */ * 1024L;
+            }
+        };
+
+
         List<IDropboxFile> all = new ArrayList<IDropboxFile>();
         for (int i = 0; i < 700; i++) {
             all.add(new TempFile());
@@ -23,13 +42,17 @@ public class Main {
             all.add(((TempFile) all.get(23)).fakeDupe());
         }
 
-        String json = makeJson(all);
+        String json = makeJson(all, fakeStats);
         System.out.println(json);
     }
 
-    private static String makeJson(List<IDropboxFile> all) {
+    private static String makeJson(List<IDropboxFile> all, IDropboxStats stats) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Map<String, Object> outer = new LinkedHashMap<String, Object>();
+
+        outer.put("stats-bytes-available", stats.spaceAvailableInBytes());
+        outer.put("stats-bytes-used", stats.spaceUsedInBytes());
+        outer.put("stats-bytes-total", stats.totalSizeInBytes());
 
         outer.put("total-file-count", (long) all.size());
         outer.put("file-extensions", extensions(all));

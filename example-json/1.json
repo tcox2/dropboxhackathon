@@ -1,128 +1,131 @@
 {
+  "stats-bytes-available": 2147483648,
+  "stats-bytes-used": 8589934592,
+  "stats-bytes-total": 10737418240,
   "total-file-count": 704,
   "file-extensions": {
     "bmp": 76,
-    "jpg": 67,
-    "png": 74,
-    "mkv": 79,
-    "mp4": 82,
-    "mp3": 88,
+    "jpg": 80,
+    "png": 68,
+    "mkv": 78,
+    "mp4": 85,
+    "mp3": 77,
     "(none)": 4,
-    "avi": 82,
-    "txt": 80,
-    "gif": 72
+    "avi": 74,
+    "gif": 81,
+    "txt": 81
   },
   "media-types-count": {
-    "picture": 289,
-    "movie": 243,
-    "audio": 88,
+    "picture": 305,
+    "movie": 237,
+    "audio": 77,
     "(unknown)": 4,
-    "text": 80
+    "text": 81
   },
   "media-types-percentages": {
-    "picture": 41,
-    "movie": 35,
-    "audio": 13,
+    "picture": 44,
+    "movie": 34,
+    "audio": 11,
     "(unknown)": 1,
-    "text": 11
+    "text": 12
   },
   "biggest-files": [
     {
-      "name": "filename_0.6791557366922534_0.6844474811423147.txt",
+      "name": "filename_0.7897364315024205_0.15200688834236853.png",
+      "path": "/foo",
+      "size": 9985706
+    },
+    {
+      "name": "filename_0.3593678103869157_0.594375611517362.avi",
       "path": "/foo/bar",
-      "size": 9998335
+      "size": 9960134
     },
     {
-      "name": "filename_0.41813505163387643_0.7051823765120566.avi",
+      "name": "filename_0.5371181674447524_0.5372795219068226.txt",
+      "path": "/monkey",
+      "size": 9955279
+    },
+    {
+      "name": "filename_0.9483438306054833_0.430156078360731.avi",
       "path": "/foo",
-      "size": 9985612
+      "size": 9944836
     },
     {
-      "name": "filename_0.19255694995040162_0.8329185931703212.jpg",
-      "path": "/foo",
-      "size": 9976578
-    },
-    {
-      "name": "filename_0.040260107645470056_0.7894390867159801.mp3",
-      "path": "/foo",
-      "size": 9973774
-    },
-    {
-      "name": "filename_0.8486451193863257_0.26824791326856656.avi",
+      "name": "filename_0.09271844767735382_0.7109640165460872.gif",
       "path": "/foo/bar",
-      "size": 9956771
+      "size": 9936833
     }
   ],
   "duplicate-files": {
-    "(hashhashhash,1153662)": {
+    "(hashhashhash,2210803)": {
       "numberOfCopies": 2,
       "instances": [
         {
-          "filename": "filename_0.6939731252517863_0.8527976511286518.mp3",
+          "filename": "filename_0.9655448099974386_0.0792333132457822.mp4",
           "path": "/monkey"
         },
         {
-          "filename": "filename_0.6939731252517863_0.8527976511286518.mp3_dupe0.06969802106367773",
-          "path": "/monkey_dupe0.5470052453774912"
+          "filename": "filename_0.9655448099974386_0.0792333132457822.mp4_dupe0.48904955149106744",
+          "path": "/monkey_dupe0.7899454943491002"
         }
       ],
-      "fileSize": 1153662,
-      "totalWastedSpace": 1153662
+      "fileSize": 2210803,
+      "totalWastedSpace": 2210803
     },
-    "(hashhashhash,8979602)": {
+    "(hashhashhash,452364)": {
       "numberOfCopies": 4,
       "instances": [
         {
-          "filename": "filename_0.3695299847953434_0.534670601658743.bmp",
+          "filename": "filename_0.8594735415178715_0.3612770757752797.gif",
           "path": "/foo"
         },
         {
-          "filename": "filename_0.3695299847953434_0.534670601658743.bmp_dupe0.9320029625301853",
-          "path": "/foo_dupe0.6121912705185937"
+          "filename": "filename_0.8594735415178715_0.3612770757752797.gif_dupe0.2548108422249269",
+          "path": "/foo_dupe0.4039559247688922"
         },
         {
-          "filename": "filename_0.3695299847953434_0.534670601658743.bmp_dupe0.5813980489795759",
-          "path": "/foo_dupe0.5469426302812606"
+          "filename": "filename_0.8594735415178715_0.3612770757752797.gif_dupe0.38205572567110857",
+          "path": "/foo_dupe0.27003263112788"
         },
         {
-          "filename": "filename_0.3695299847953434_0.534670601658743.bmp_dupe0.6278471791306789",
-          "path": "/foo_dupe0.6796995625577613"
+          "filename": "filename_0.8594735415178715_0.3612770757752797.gif_dupe0.0789987881244929",
+          "path": "/foo_dupe0.4087251154468522"
         }
       ],
-      "fileSize": 8979602,
-      "totalWastedSpace": 26938806
+      "fileSize": 452364,
+      "totalWastedSpace": 1357092
     }
   },
   "old-big-files": [
     {
-      "filename": "filename_0.6791557366922534_0.6844474811423147.txt",
+      "filename": "filename_0.7897364315024205_0.15200688834236853.png",
+      "path": "/foo",
+      "size": 9985706,
+      "ageInMillis": 1305930346682
+    },
+    {
+      "filename": "filename_0.3593678103869157_0.594375611517362.avi",
       "path": "/foo/bar",
-      "size": 9998335,
-      "ageInMillis": 436001420911
+      "size": 9960134,
+      "ageInMillis": 820432371019
     },
     {
-      "filename": "filename_0.41813505163387643_0.7051823765120566.avi",
+      "filename": "filename_0.5371181674447524_0.5372795219068226.txt",
+      "path": "/monkey",
+      "size": 9955279,
+      "ageInMillis": 236913489658
+    },
+    {
+      "filename": "filename_0.9483438306054833_0.430156078360731.avi",
       "path": "/foo",
-      "size": 9985612,
-      "ageInMillis": 230737250031
+      "size": 9944836,
+      "ageInMillis": 240129224953
     },
     {
-      "filename": "filename_0.19255694995040162_0.8329185931703212.jpg",
-      "path": "/foo",
-      "size": 9976578,
-      "ageInMillis": 600846785756
-    },
-    {
-      "filename": "filename_0.040260107645470056_0.7894390867159801.mp3",
-      "path": "/foo",
-      "size": 9973774,
-      "ageInMillis": 391073551150
-    },
-    {
-      "filename": "filename_0.8486451193863257_0.26824791326856656.avi",
+      "filename": "filename_0.09271844767735382_0.7109640165460872.gif",
       "path": "/foo/bar",
-      "size": 9956771,
-      "ageInMillis": 1203375086922
+      "size": 9936833,
+      "ageInMillis": 352608023295
     }
   ]
 }
