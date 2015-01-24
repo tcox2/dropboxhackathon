@@ -80,7 +80,7 @@ public class OldMain {
             total += l;
         }
 
-        double onePercent = total / 100;
+        double onePercent = total / 100d;
 
         Map<String, Long> percentages = new LinkedHashMap<String, Long>();
 
