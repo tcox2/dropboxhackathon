@@ -1,10 +1,9 @@
 import java.io.FileInputStream;
+import java.io.InputStream;
 
 
 public interface IDropboxUpload {
 
-	long fileSize();
-
-	FileInputStream fileInputStream();
+	void upload(String filenameIncludingPath, long size, InputStream data);
 
 }
