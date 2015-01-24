@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -75,7 +74,7 @@ public class DropboxService implements IDropboxService {
 
 	@Override
 	public String getLatestReport(final String accessToken) throws DbxException {
-		final List<IDropboxFile> allReports = getContents(getDbxClient(accessToken), "/Apps/Manifesto", NON_RECURSIVE);
+		final List<IDropboxFile> allReports = getContents(getDbxClient(accessToken), "/Apps/Manifest", NON_RECURSIVE);
 
 		IDropboxFile latestReport = null;
 		for (final IDropboxFile currentReport : allReports) {
@@ -188,7 +187,7 @@ public class DropboxService implements IDropboxService {
 
 		try {
 
-			final byte[] b = Files.readAllBytes(fileToRead.toPath());
+			final byte[] b = FileUtils.readFileToByteArray(fileToRead);
 
 			for (int i=0; i < b.length; i++) {
 				result +=

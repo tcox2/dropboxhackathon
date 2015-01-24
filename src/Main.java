@@ -62,12 +62,14 @@ public class Main {
             IDropboxStats stats = dropbox.getQuotaStats(token);
 
             String json = OldMain.makeJson(allFiles, stats);
+
             byte[] data = json.getBytes();
             InputStream is = new ByteArrayInputStream(data);
             System.out.println("Uploading json report (" + data.length + " bytes)");
             String jsonReportFilename = jsonReportFilename();
             dropbox.upload(token, jsonReportFilename, data.length, is);
             System.out.println("Uploaded file to dropbox: " + jsonReportFilename);
+
         }
     }
 
@@ -98,16 +100,29 @@ public class Main {
             String response;
             int code;
             try {
-                User u = read(is);
-                System.out.println("New access token: " + u.accessToken);
-                List<String> tokens = readTokens();
-                tokens.add(u.accessToken);
-                writeTokens(tokens);
-                response = "ok";
-                code = 200;
-                System.out.println("Request handled");
+                Request u = read(is);
+                if (u.command == null) {
+                    System.out.println("New access token: " + u.accessToken);
+                    List<String> tokens = readTokens();
+                    tokens.add(u.accessToken);
+                    writeTokens(tokens);
+                    response = "ok";
+                    code = 200;
+                    System.out.println("Request handled");
+                } else if ("get_latest_json".equals(u.command)) {
+                    System.out.println("getting latest report for token " + u.accessToken);
+                    String latestJson = dropbox.getLatestReport(u.accessToken);
+                  //  System.out.println("latest json: " + latestJson);
+                    response = latestJson;
+                    code = 200;
+                    System.out.printf("Front end requested latest report");
+                } else {
+                    response = "bad request";
+                    code = 400;
+                }
             } catch (Throwable f) {
                 System.out.println(f);
+                f.printStackTrace();
                 response = "failed";
                 code = 500;
             }
@@ -151,14 +166,18 @@ public class Main {
     }
 
 
-    private static User read(InputStream is) {
-        User u = new User();
+    private static Request read(InputStream is) {
+        Request u = new Request();
         JsonElement parse = Streams.parse(new JsonReader(new InputStreamReader(is)));
         for (Map.Entry<String, JsonElement> e : parse.getAsJsonObject().entrySet()) {
-            System.out.println(e.getKey() + "     " + e.getValue().toString());
+            String value = e.getValue().getAsString();
 
+            System.out.println(e.getKey() + "     " + value);
             if ("accessToken".equals(e.getKey())) {
-                u.accessToken = e.getValue().toString();
+                u.accessToken = value;
+            }
+            if ("command".equals(e.getKey())) {
+                u.command = value;
             }
         }
         if (u.accessToken == null || u.accessToken.length() == 0) {
@@ -177,8 +196,9 @@ public class Main {
 
 }
 
-class User {
+class Request {
     String accessToken;
+    String command;
 }
 
 /*

@@ -1,4 +1,5 @@
 {
-	"accessToken": "djiodjhdiojoidjdiodjioejioejdiojdiojd"
+	"accessToken": "djiodjhdiojoidjdiodjioejioejdiojdiojd",
+  	"command" : "get_latest_json"
 }
 
