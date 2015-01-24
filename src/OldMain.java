@@ -7,7 +7,7 @@ import java.util.*;
 // we are team 25
 //
 
-public class TestMain {
+public class OldMain {
 
     public static void main(String[] args) {
 
@@ -51,7 +51,7 @@ public class TestMain {
         System.out.println(json);
     }
 
-    private static String makeJson(List<IDropboxFile> all, IDropboxStats stats) {
+    public static String makeJson(List<IDropboxFile> all, IDropboxStats stats) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Map<String, Object> outer = new LinkedHashMap<String, Object>();
 
@@ -161,7 +161,7 @@ public class TestMain {
                 return -new Long(o1.size()).compareTo(o2.size());
             }
         });
-        List<IDropboxFile> biggest = all.subList(0, 5);
+        List<IDropboxFile> biggest = all.subList(0, Math.min(5, all.size()));
         List<BigFile> out = new ArrayList<BigFile>();
         for (IDropboxFile f : biggest) {
             BigFile bf = new BigFile();
