@@ -7,7 +7,7 @@ import java.util.*;
 // we are team 25
 //
 
-public class Main {
+public class TestMain {
 
     public static void main(String[] args) {
 
@@ -25,6 +25,11 @@ public class Main {
             @Override
             public long spaceUsedInBytes() {
                 return 8 * 1024 /* kb */ * 1024 /* mb */ * 1024L;
+            }
+
+            @Override
+            public long spaceUsedSharedInBytes() {
+                return 1 * 1024 /* kb */ * 1024 /* mb */ * 1024L;
             }
         };
 
