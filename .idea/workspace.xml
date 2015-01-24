@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="985dc522-bc0f-44bd-a355-fefd0b7b44a6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CounterThing.java" afterPath="$PROJECT_DIR$/src/CounterThing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/OldMain.java" afterPath="$PROJECT_DIR$/src/OldMain.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dropboxhackathon.iws" />
@@ -474,7 +471,8 @@
     <MESSAGE value="latest works now" />
     <MESSAGE value="total sizes by file size&#10;" />
     <MESSAGE value="final json 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="final json 2" />
+    <MESSAGE value="run" />
+    <option name="LAST_COMMIT_MESSAGE" value="run" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
