@@ -63,7 +63,8 @@ public class OldMain {
         outer.put("total-file-count", (long) all.size());
         outer.put("file-extensions", extensions(all));
         outer.put("media-types-count", mediaTypes(extensions(all)));
-        outer.put("media-types-percentages", percentagify(mediaTypes(extensions(all))));
+        outer.put("media-types-percentages", percentagify(mediaTypes(extensionsByFileSize(all))));
+        outer.put("media-types-totalfilesize", mediaTypes(extensionsByFileSize(all)));
         outer.put("biggest-files", biggestFiles(all));
         outer.put("duplicate-files", DupeFinder.find(all));
 
@@ -117,6 +118,31 @@ public class OldMain {
             }
             long count = extensions.get(ext);
             count++;
+            extensions.put(ext, count);
+        }
+
+        return extensions;
+    }
+
+    private static Map<String, Long> extensionsByFileSize(List<IDropboxFile> all) {
+        Map<String, Long> extensions = new HashMap<String, Long>();
+        for (IDropboxFile f : all) {
+            String fn = f.filename();
+            String[] parts = fn.split("\\.");
+            String ext = "(none)";
+            if (parts.length > 1) {
+                ext = parts[parts.length - 1];
+
+                if (ext.length() > 4) {
+                    ext = "(none)";
+                }
+            }
+
+            if (!extensions.containsKey(ext)) {
+                extensions.put(ext, 0L);
+            }
+            long count = extensions.get(ext);
+            count += f.size();
             extensions.put(ext, count);
         }
 

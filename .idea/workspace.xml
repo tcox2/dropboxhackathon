@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="985dc522-bc0f-44bd-a355-fefd0b7b44a6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DropboxService.java" afterPath="$PROJECT_DIR$/src/DropboxService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/OldMain.java" afterPath="$PROJECT_DIR$/src/OldMain.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dropboxhackathon.iws" />
@@ -29,21 +29,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <file leaf-file-name="OldMain.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/OldMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-45.25926" vertical-offset="1533" max-vertical-offset="4294">
-              <caret line="145" column="39" selection-start-line="145" selection-start-column="39" selection-end-line="145" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.37116912" vertical-offset="1041" max-vertical-offset="4009">
+              <caret line="72" column="24" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DropboxService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.740741" vertical-offset="2907" max-vertical-offset="4294">
+              <caret line="164" column="9" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DropboxService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DropboxService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40986717" vertical-offset="3109" max-vertical-offset="3990">
-              <caret line="175" column="13" selection-start-line="175" selection-start-column="13" selection-end-line="175" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3109" max-vertical-offset="3990">
+              <caret line="189" column="4" selection-start-line="189" selection-start-column="4" selection-end-line="189" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -66,13 +76,13 @@
         <option value="$PROJECT_DIR$/src/DupeFinder.java" />
         <option value="$PROJECT_DIR$/src/TempFile.java" />
         <option value="$PROJECT_DIR$/src/TestMain.java" />
-        <option value="$PROJECT_DIR$/src/OldMain.java" />
         <option value="$PROJECT_DIR$/example-json/userlogin-request.json" />
         <option value="$PROJECT_DIR$/example-json/get-latest-request.json" />
         <option value="$PROJECT_DIR$/src/IDropboxService.java" />
         <option value="$PROJECT_DIR$/src/OldBigFiles.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/DropboxService.java" />
+        <option value="$PROJECT_DIR$/src/OldMain.java" />
       </list>
     </option>
   </component>
@@ -417,7 +427,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2129743" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38943896" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38943896" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -447,7 +457,8 @@
     <MESSAGE value="reports!" />
     <MESSAGE value="fix percentage bug" />
     <MESSAGE value="again again&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="again again&#10;" />
+    <MESSAGE value="latest works now" />
+    <option name="LAST_COMMIT_MESSAGE" value="latest works now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -653,14 +664,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/OldMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="532" max-vertical-offset="3515">
-          <caret line="49" column="45" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/example-json/userlogin-request.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="209">
@@ -701,18 +704,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/DropboxService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-45.25926" vertical-offset="1533" max-vertical-offset="4294">
-          <caret line="145" column="39" selection-start-line="145" selection-start-column="39" selection-end-line="145" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3109" max-vertical-offset="3990">
+          <caret line="189" column="4" selection-start-line="189" selection-start-column="4" selection-end-line="189" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DropboxService.java">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40986717" vertical-offset="3109" max-vertical-offset="3990">
-          <caret line="175" column="13" selection-start-line="175" selection-start-column="13" selection-end-line="175" selection-end-column="13" />
+        <state vertical-scroll-proportion="-7.740741" vertical-offset="2907" max-vertical-offset="4294">
+          <caret line="164" column="9" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OldMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37116912" vertical-offset="1041" max-vertical-offset="4009">
+          <caret line="72" column="24" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="24" />
           <folding />
         </state>
       </provider>
