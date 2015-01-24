@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -194,7 +193,7 @@ public class DropboxService implements IDropboxService {
 
 			final byte[] b = FileUtils.readFileToByteArray(fileToRead);
 
-			result = new String(b, StandardCharsets.UTF_8);
+			result = new String(b, "UTF-8");
 		} catch (final IOException e) {
 			System.out.println("Error reading report file:");
 			e.printStackTrace();
