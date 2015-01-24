@@ -55,6 +55,7 @@ public class OldMain {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Map<String, Object> outer = new LinkedHashMap<String, Object>();
 
+        outer.put("generated-at-timestamp", new Date().getTime());
         outer.put("stats-bytes-used-shared", stats.spaceUsedSharedInBytes());
         outer.put("stats-bytes-available", stats.spaceAvailableInBytes());
         outer.put("stats-bytes-used", stats.spaceUsedInBytes());
