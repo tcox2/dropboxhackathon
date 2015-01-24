@@ -61,24 +61,24 @@ public class DropboxService implements IDropboxService {
 	}
 
 	@Override
-	public String getFileHash(String accessToken, IDropboxFile file) throws DbxException {
+	public String getFileHash(final String accessToken, final IDropboxFile file) throws DbxException {
 
 		return hashFile(getDbxClient(accessToken), file);
 	}
 
 	@Override
-	public IDropboxStats getQuotaStats(String accessToken) throws DbxException {
+	public IDropboxStats getQuotaStats(final String accessToken) throws DbxException {
 		final DbxAccountInfo.Quota quotaInfo = getAccountInfo(getDbxClient(accessToken)).quota;
 
 		return new DropboxStats(quotaInfo);
 	}
 
 	@Override
-	public String getLatestReport(String accessToken) throws DbxException {
-		List<IDropboxFile> allReports = getContents(getDbxClient(accessToken), "/Apps/Manifesto/", NON_RECURSIVE);
+	public String getLatestReport(final String accessToken) throws DbxException {
+		final List<IDropboxFile> allReports = getContents(getDbxClient(accessToken), "/Apps/Manifesto", NON_RECURSIVE);
 
 		IDropboxFile latestReport = null;
-		for (IDropboxFile currentReport : allReports) {
+		for (final IDropboxFile currentReport : allReports) {
 			if (latestReport == null) {
 				latestReport = currentReport;
 			}
@@ -171,10 +171,10 @@ public class DropboxService implements IDropboxService {
 				result +=
 						Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
 			}
-		} catch (NoSuchAlgorithmException e) {
+		} catch (final NoSuchAlgorithmException e) {
 			System.out.println("Error generating file hash:");
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			System.out.println("Error generating file hash:");
 			e.printStackTrace();
 		}
@@ -194,7 +194,7 @@ public class DropboxService implements IDropboxService {
 				result +=
 						Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
 			}
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			System.out.println("Error reading report file:");
 			e.printStackTrace();
 		}
