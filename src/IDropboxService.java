@@ -15,4 +15,6 @@ public interface IDropboxService {
 
 	IDropboxStats getQuotaStats(String accessToken) throws DbxException;
 
+	String getLatestReport(String accessToken) throws DbxException;
+
 }
