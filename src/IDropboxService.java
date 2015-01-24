@@ -11,4 +11,6 @@ public interface IDropboxService {
 
 	List<IDropboxFile> getFileList(String accessToken) throws DbxException;
 
+	String getFileHash(String accessToken, IDropboxFile file) throws DbxException;
+
 }

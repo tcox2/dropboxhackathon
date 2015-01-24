@@ -28,7 +28,7 @@ public class DropboxService implements IDropboxService {
 	@Override
 	public List<IDropboxFile> getFileList(final String accessToken) throws DbxException {
 
-		final List<IDropboxFile> allFilesInDropbox = traverseHierarchy(accessToken, "/");
+		final List<IDropboxFile> allFilesInDropbox = traverseHierarchy(getDbxClient(accessToken), "/");
 
 		return allFilesInDropbox;
 	}
@@ -54,6 +54,12 @@ public class DropboxService implements IDropboxService {
 		getDbxClient(accessToken).uploadFile(filenameIncludingPath, DbxWriteMode.force(), size, data);
 	}
 
+	@Override
+	public String getFileHash(String accessToken, IDropboxFile file) throws DbxException {
+
+		return hashFile(getDbxClient(accessToken), file);
+	}
+
 	private DbxClient getDbxClient(final String accessToken) throws DbxException {
 
 		final DbxRequestConfig config = new DbxRequestConfig(
@@ -68,33 +74,28 @@ public class DropboxService implements IDropboxService {
 		return accountInfo;
 	}
 
-	private List<IDropboxFile> traverseHierarchy(final String accessToken, final String parentPath)
+	private List<IDropboxFile> traverseHierarchy(final DbxClient client, final String parentPath)
 			throws DbxException {
 
 		final List<IDropboxFile> files = new ArrayList<IDropboxFile>();
 
-		final DbxEntry.WithChildren listing = getDbxClient(accessToken).getMetadataWithChildren(parentPath);
+		final DbxEntry.WithChildren listing = client.getMetadataWithChildren(parentPath);
 
 		for (final DbxEntry child : listing.children) {
 
 			if (child.isFile()) {
 				final DbxEntry.File dropboxFile = child.asFile();
-				final DropboxFile file = new DropboxFile(dropboxFile);
-
-				final File tempFile = downloadFile(getDbxClient(accessToken), dropboxFile, file);
-				file.setHash(hashFile(tempFile));
-
-				files.add(file);
+				files.add(new DropboxFile(dropboxFile));
 			}
 			else if (child.isFolder()) {
-				files.addAll(traverseHierarchy(accessToken, child.asFolder().path));
+				files.addAll(traverseHierarchy(client, child.asFolder().path));
 			}
 		}
 
 		return files;
 	}
 
-	private File downloadFile(final DbxClient client, final DbxEntry.File dropboxFile, final DropboxFile file)
+	private File downloadFile(final DbxClient client, final IDropboxFile file)
 			throws DbxException {
 
 		File tempFile = null;
@@ -104,8 +105,7 @@ public class DropboxService implements IDropboxService {
 			final FileOutputStream target = new FileOutputStream(tempFile);
 
 			try {
-
-				client.getFile(dropboxFile.path, dropboxFile.rev, target);
+				client.getFile(file.fullPath(), file.rev(), target);
 			}
 			finally {
 				target.close();
@@ -118,7 +118,9 @@ public class DropboxService implements IDropboxService {
 		return tempFile;
 	}
 
-	private String hashFile(final File tempFile) {
+	private String hashFile(final DbxClient client, final IDropboxFile file) throws DbxException {
+
+		final File fileToHash = downloadFile(client, file);
 
 		final String myHash = "MD5";
 		MessageDigest complete;
@@ -127,7 +129,7 @@ public class DropboxService implements IDropboxService {
 		try {
 			complete = MessageDigest.getInstance(myHash);
 
-			final byte[] b = complete.digest(Files.readAllBytes(tempFile.toPath()));
+			final byte[] b = complete.digest(Files.readAllBytes(fileToHash.toPath()));
 
 			for (int i=0; i < b.length; i++) {
 				result +=

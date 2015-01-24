@@ -1,14 +1,16 @@
 
 public interface IDropboxFile {
 
-    long lastModified();
+	long lastModified();
 
-    String filename();
+	String filename();
 
-    String path();
+	String path();
 
-    long size();
+	String fullPath();
 
-    String hash();
+	long size();
+
+	String rev();
 
 }

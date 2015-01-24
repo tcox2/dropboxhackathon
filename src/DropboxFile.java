@@ -5,10 +5,9 @@ import java.util.List;
 import com.dropbox.core.DbxEntry;
 
 public class DropboxFile implements IDropboxFile {
-	
+
 	final DbxEntry.File dropboxFile;
-	private String hash;
-	
+
 	public DropboxFile(DbxEntry.File dropboxFile) {
 		this.dropboxFile = dropboxFile;
 	}
@@ -21,7 +20,7 @@ public class DropboxFile implements IDropboxFile {
 	@Override
 	public String filename() {
 		String[] filePathSegments = dropboxFile.path.split("/");
-		
+
 		return filePathSegments[filePathSegments.length - 1];
 	}
 
@@ -32,17 +31,17 @@ public class DropboxFile implements IDropboxFile {
 		filePathSegments.addAll(Arrays.asList(dropboxFile.path.split("/")));
 		filePathSegments.remove(0);
 		filePathSegments.remove(filePathSegments.size() - 1);
-		
+
 		if (filePathSegments.isEmpty()) {
 			return "/";
 		}
-		
+
 		for (String pathSegment : filePathSegments)
 		{
 			filePath += "/";
 			filePath += pathSegment;
 		}
-		
+
 		return filePath;
 	}
 
@@ -52,12 +51,13 @@ public class DropboxFile implements IDropboxFile {
 	}
 
 	@Override
-	public String hash() {
-		return hash;
+	public String rev() {
+		return dropboxFile.rev;
 	}
 
-	public void setHash(String hash) {
-		this.hash = hash;
+	@Override
+	public String fullPath() {
+		return dropboxFile.path;
 	}
 
 }
