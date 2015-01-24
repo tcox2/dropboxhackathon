@@ -1,0 +1,74 @@
+{
+  "stats-bytes-used-shared": 0,
+  "stats-bytes-available": 66455485,
+  "stats-bytes-used": 2081028163,
+  "stats-bytes-total": 2147483648,
+  "total-file-count": 7,
+  "file-extensions": {
+    "jpg": 5,
+    "pdf": 1,
+    "mp3": 1
+  },
+  "media-types-count": {
+    "picture": 5,
+    "(unknown)": 1,
+    "audio": 1
+  },
+  "media-types-percentages": {
+    "picture": 71,
+    "(unknown)": 14,
+    "audio": 14
+  },
+  "biggest-files": [
+    {
+      "name": "intenseworlds.mp3",
+      "path": "/Podcast",
+      "size": 65535949
+    },
+    {
+      "name": "Getting Started.pdf",
+      "path": "/",
+      "size": 249159
+    },
+    {
+      "name": "891525_1724613814430304_351582645_n.jpg",
+      "path": "/Pictures",
+      "size": 219272
+    },
+    {
+      "name": "914406_484344545042774_1253831476_n.jpg",
+      "path": "/",
+      "size": 122921
+    },
+    {
+      "name": "914406_484344545042774_1253831476_n.jpg",
+      "path": "/Pictures",
+      "size": 122921
+    }
+  ],
+  "duplicate-files": {
+    "(,122921)": {
+      "numberOfCopies": 2,
+      "instances": [
+        {
+          "filename": "914406_484344545042774_1253831476_n.jpg",
+          "path": "/"
+        },
+        {
+          "filename": "914406_484344545042774_1253831476_n.jpg",
+          "path": "/Pictures"
+        }
+      ],
+      "fileSize": 122921,
+      "totalWastedSpace": 122921
+    }
+  },
+  "old-big-files": [
+    {
+      "filename": "Getting Started.pdf",
+      "path": "/",
+      "size": 249159,
+      "ageInMillis": 55848648
+    }
+  ]
+}

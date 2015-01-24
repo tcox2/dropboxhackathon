@@ -112,7 +112,7 @@ public class Main {
         }
 
         private static List<String> stripQuotes(List<String> tokens) {
-            List<String> out = new ArrayList<>();
+            List<String> out = new ArrayList<String>();
             for (String t : tokens) {
                 if (t.startsWith("\"")) {
                     t = t.substring(1);
@@ -133,7 +133,7 @@ public class Main {
             System.out.println("Read " + s.size() + " access tokens from tokens file");
             return s;
         } catch (FileNotFoundException e) {
-            return new ArrayList<>();
+            return new ArrayList<String>();
         }
     }
 

@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -17,6 +16,7 @@ import com.dropbox.core.DbxEntry;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.DbxWriteMode;
+import org.apache.commons.io.FileUtils;
 
 
 public class DropboxService implements IDropboxService {
@@ -136,13 +136,16 @@ public class DropboxService implements IDropboxService {
 		try {
 			complete = MessageDigest.getInstance(myHash);
 
-			final byte[] b = complete.digest(Files.readAllBytes(fileToHash.toPath()));
+			final byte[] b = complete.digest(FileUtils.readFileToByteArray(fileToHash));
 
 			for (int i=0; i < b.length; i++) {
 				result +=
 						Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
 			}
-		} catch (NoSuchAlgorithmException | IOException e) {
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println("Error generating file hash:");
+			e.printStackTrace();
+		} catch (IOException e) {
 			System.out.println("Error generating file hash:");
 			e.printStackTrace();
 		}
