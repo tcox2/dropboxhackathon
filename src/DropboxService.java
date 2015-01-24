@@ -2,12 +2,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+
+import org.apache.commons.io.FileUtils;
 
 import com.dropbox.core.DbxAccountInfo;
 import com.dropbox.core.DbxClient;
@@ -16,19 +19,22 @@ import com.dropbox.core.DbxEntry;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.DbxWriteMode;
-import org.apache.commons.io.FileUtils;
 
 
 public class DropboxService implements IDropboxService {
 
 	private  final String ACCESS_TOKEN = "";
 
+	private static final boolean RECURSIVE = true;
+
+	private static final boolean NON_RECURSIVE = true;
+
 	private String lastDeltaCursor = "";
 
 	@Override
 	public List<IDropboxFile> getFileList(final String accessToken) throws DbxException {
 
-		final List<IDropboxFile> allFilesInDropbox = traverseHierarchy(getDbxClient(accessToken), "/");
+		final List<IDropboxFile> allFilesInDropbox = getContents(getDbxClient(accessToken), "/", RECURSIVE);
 
 		return allFilesInDropbox;
 	}
@@ -67,6 +73,29 @@ public class DropboxService implements IDropboxService {
 		return new DropboxStats(quotaInfo);
 	}
 
+	@Override
+	public String getLatestReport(String accessToken) throws DbxException {
+		List<IDropboxFile> allReports = getContents(getDbxClient(accessToken), "/Apps/Manifesto/", NON_RECURSIVE);
+
+		IDropboxFile latestReport = null;
+		for (IDropboxFile currentReport : allReports) {
+			if (latestReport == null) {
+				latestReport = currentReport;
+			}
+			else {
+				final boolean newer = latestReport.lastModified() < currentReport.lastModified();
+
+				if (newer) {
+					latestReport = currentReport;
+				}
+			}
+		}
+
+		final File reportFile = downloadFile(getDbxClient(accessToken), latestReport);
+
+		return readFile(reportFile);
+	}
+
 	private DbxClient getDbxClient(final String accessToken) throws DbxException {
 
 		final DbxRequestConfig config = new DbxRequestConfig(
@@ -81,7 +110,7 @@ public class DropboxService implements IDropboxService {
 		return accountInfo;
 	}
 
-	private List<IDropboxFile> traverseHierarchy(final DbxClient client, final String parentPath)
+	private List<IDropboxFile> getContents(final DbxClient client, final String parentPath, final boolean recursive)
 			throws DbxException {
 
 		final List<IDropboxFile> files = new ArrayList<IDropboxFile>();
@@ -94,8 +123,8 @@ public class DropboxService implements IDropboxService {
 				final DbxEntry.File dropboxFile = child.asFile();
 				files.add(new DropboxFile(dropboxFile));
 			}
-			else if (child.isFolder()) {
-				files.addAll(traverseHierarchy(client, child.asFolder().path));
+			else if (child.isFolder() && recursive) {
+				files.addAll(getContents(client, child.asFolder().path, recursive));
 			}
 		}
 
@@ -147,6 +176,26 @@ public class DropboxService implements IDropboxService {
 			e.printStackTrace();
 		} catch (IOException e) {
 			System.out.println("Error generating file hash:");
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	private String readFile(final File fileToRead) throws DbxException {
+
+		String result = "";
+
+		try {
+
+			final byte[] b = Files.readAllBytes(fileToRead.toPath());
+
+			for (int i=0; i < b.length; i++) {
+				result +=
+						Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
+			}
+		} catch (IOException e) {
+			System.out.println("Error reading report file:");
 			e.printStackTrace();
 		}
 
