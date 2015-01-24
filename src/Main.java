@@ -5,6 +5,7 @@ import com.google.gson.stream.JsonReader;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -166,9 +167,20 @@ public class Main {
     }
 
 
-    private static Request read(InputStream is) {
+    private static Request read(InputStream is) throws IOException {
         Request u = new Request();
-        JsonElement parse = Streams.parse(new JsonReader(new InputStreamReader(is)));
+        StringWriter writer = new StringWriter();
+        IOUtils.copy(is, writer, "UTF-8");
+        String theString = writer.toString();
+        System.out.println("received: " + theString);
+        theString = theString.replaceAll("'", "\"");
+        theString = theString.substring(1);
+        theString = theString.substring(0, theString.length() - 1);
+        System.out.println("changed: " + theString);
+
+        JsonReader reader = new JsonReader(new StringReader(theString));
+        reader.setLenient(true);
+        JsonElement parse = Streams.parse(reader);
         for (Map.Entry<String, JsonElement> e : parse.getAsJsonObject().entrySet()) {
             String value = e.getValue().getAsString();
 
