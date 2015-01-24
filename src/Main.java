@@ -57,6 +57,8 @@ public class Main {
 
             List<IDropboxFile> allFiles = dropbox.getFileList(token);
 
+            allFiles = removeReportFiles(allFiles);
+
             IDropboxStats stats = dropbox.getQuotaStats(token);
 
             String json = OldMain.makeJson(allFiles, stats);
@@ -67,6 +69,17 @@ public class Main {
             dropbox.upload(token, jsonReportFilename, data.length, is);
             System.out.println("Uploaded file to dropbox: " + jsonReportFilename);
         }
+    }
+
+    private static List<IDropboxFile> removeReportFiles(List<IDropboxFile> allFiles) {
+        List out = new ArrayList<IDropboxFile>();
+        for (IDropboxFile f : allFiles) {
+            if (!f.fullPath().startsWith("/Apps/Manifest")) {
+                out.add(f);
+            }
+        }
+        System.out.println("removeReportFiles: Examining " + out.size() + " files out of " + allFiles.size());
+        return out;
     }
 
     private static String jsonReportFilename() {
