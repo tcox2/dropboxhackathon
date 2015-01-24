@@ -1,10 +1,12 @@
 
 public interface IDropboxStats {
 
-    long totalSizeInBytes();
+	long totalSizeInBytes();
 
-    long spaceAvailableInBytes();
+	long spaceAvailableInBytes();
 
-    long spaceUsedInBytes();
+	long spaceUsedInBytes();
+
+	long spaceUsedSharedInBytes();
 
 }

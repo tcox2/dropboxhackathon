@@ -12,9 +12,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
+import com.dropbox.core.DbxAccountInfo;
 import com.dropbox.core.DbxAppInfo;
 import com.dropbox.core.DbxAuthFinish;
 import com.dropbox.core.DbxClient;
+import com.dropbox.core.DbxDelta;
 import com.dropbox.core.DbxEntry;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
@@ -26,6 +28,8 @@ public class DropboxSync {
 	final static String APP_KEY = "5qrvnudv5gltoy8";
 	final static String APP_SECRET = "ystltok87pzc6ue";
 	final static String ACCESS_TOKEN = "";
+
+	static String lastDeltaCursor = "";
 
 	public static void main(final String[] args) throws IOException, DbxException, NoSuchAlgorithmException {
 
@@ -50,16 +54,44 @@ public class DropboxSync {
 			System.out.println(accessToken);
 		}
 
-		getFileList(config, accessToken);
+		final DbxClient client = new DbxClient(config, accessToken);
+
+		final DbxAccountInfo accountInfo = getAccountInfo(client);
+		System.out.println("Linked account: " + accountInfo.displayName);
+
+		System.out.println("normal: " + accountInfo.quota.normal);
+		System.out.println("shared: " + accountInfo.quota.shared);
+		System.out.println("total: " + accountInfo.quota.total);
+
+		getFileList(client);
+		getDelta(client);
 	}
 
-	private static void getFileList(final DbxRequestConfig config, final String accessToken)
+	private static DbxAccountInfo getAccountInfo(final DbxClient client) throws DbxException {
+		final DbxAccountInfo accountInfo = client.getAccountInfo();
+
+		return accountInfo;
+	}
+
+	private static void getFileList(final DbxClient client)
 			throws DbxException, IOException, NoSuchAlgorithmException {
 
-		final DbxClient client = new DbxClient(config, accessToken);
-		System.out.println("Linked account: " + client.getAccountInfo().displayName);
-
 		final List<IDropboxFile> allFilesInDropbox = traverseHierarchy(client, "/");
+	}
+
+	private static DbxDelta<DbxEntry> getDelta(final DbxClient client) throws DbxException {
+		final DbxDelta<DbxEntry> delta = client.getDelta(lastDeltaCursor.isEmpty() ? null : lastDeltaCursor);
+		lastDeltaCursor = delta.cursor;
+
+		if (delta.hasMore)
+		{
+			getDelta(client);
+		}
+
+		System.out.println("delta result:");
+		System.out.println(delta);
+
+		return delta;
 	}
 
 	private static List<IDropboxFile> traverseHierarchy(final DbxClient client, final String parentPath)
