@@ -85,7 +85,10 @@ public class OldMain {
         Map<String, Long> percentages = new LinkedHashMap<String, Long>();
 
         for (Map.Entry<String, Long> e : counts.entrySet()) {
-            percentages.put(e.getKey(), roundOff((double) (e.getValue()) / onePercent));
+            percentages.put(e.getKey(),
+                    onePercent != 0 ?
+                        roundOff((double) (e.getValue()) / onePercent) :
+                        0);
         }
         return percentages;
     }
